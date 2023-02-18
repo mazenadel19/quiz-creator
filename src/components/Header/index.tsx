@@ -13,9 +13,16 @@ import Toolbar from "@mui/material/Toolbar";
 import MenuIcon from "@mui/icons-material/Menu";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { NavLink } from "react-router-dom";
+
+import "./index.css"
 
 const drawerWidth = 240;
-const navItems = ["Create", "View"];
+const navItems = [
+  { text: "Create", pathname: "create" },
+  { text: "Home", pathname: "/" },
+];
+
 
 export default function DrawerAppBar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -31,12 +38,19 @@ export default function DrawerAppBar() {
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
+        {navItems.map(({ text, pathname }) => (
+          <NavLink
+            to={pathname}
+            className={({ isActive }) =>
+              isActive ? "text-decoration-none active" : "text-decoration-none"
+            }
+          >
+            <ListItem key={text} disablePadding>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          </NavLink>
         ))}
       </List>
     </Box>
@@ -66,10 +80,18 @@ export default function DrawerAppBar() {
             Quiz Creator
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Button key={item} sx={{ color: "#fff" }}>
-                {item}
-              </Button>
+            {navItems.map(({ text, pathname }) => (
+              <NavLink
+                key={text}
+                to={pathname}
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-decoration-none active"
+                    : "text-decoration-none"
+                }
+              >
+                <Button sx={{ color: "#fff" }}>{text}</Button>
+              </NavLink>
             ))}
           </Box>
         </Toolbar>

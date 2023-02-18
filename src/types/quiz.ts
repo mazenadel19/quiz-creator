@@ -16,7 +16,7 @@ export declare module QuizType {
    interface RootObject {
     created: string;
     description: string;
-    id: number;
+    id: string;
     modified: string;
     questions: Question[];
     score?: any;
