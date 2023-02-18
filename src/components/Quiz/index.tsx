@@ -20,9 +20,11 @@ const Quiz = ({ quiz }: IQuiz) => (
         <Grid item>
           <IconButton
             edge='end'
-            aria-label='delete'
+            aria-label='edit'
+            title='edit'
             component={Link}
             to={`edit/${quiz.id}`}
+            sx={{ backgroundColor: "#eee" }}
           >
             <EditIcon color='warning' />
           </IconButton>
@@ -30,9 +32,11 @@ const Quiz = ({ quiz }: IQuiz) => (
         <Grid item>
           <IconButton
             edge='end'
-            aria-label='delete'
+            aria-label='play'
             component={Link}
+            title='play'
             to={`play/${quiz.id}`}
+            sx={{ backgroundColor: "#eee" }}
           >
             <StartIcon color='primary' />
           </IconButton>
