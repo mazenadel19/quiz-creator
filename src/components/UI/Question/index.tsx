@@ -9,8 +9,9 @@ import { Input, RadioButtons } from "../../";
 import { QuizType } from "../../../types/quiz";
 
 const Question = ({ number }: { number: number }) => {
-  const { getValues, unregister, formState } = useFormContext();
+  const { getValues, setError, unregister } = useFormContext();
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
   const { append } = useFieldArray({ name: "Questions" });
 
   const handleAddQuestion = () => {
@@ -24,6 +25,13 @@ const Question = ({ number }: { number: number }) => {
       `Q${number}_answer4`,
       `Q${number}_is_true`,
     ];
+
+    for (let i = 0; i < fields.length; i++) {
+      if (!getValues(fields[i])) {
+        setError(fields[i], { type: "required", message: "required" });
+        return
+      }
+    }
 
     const question: QuizType.Question = {
       text: getValues(`Q${number}_text`),
@@ -48,19 +56,18 @@ const Question = ({ number }: { number: number }) => {
       feedback_false: getValues(`Q${number}_feedback_false`),
       feedback_true: getValues(`Q${number}_feedback_false`),
     };
-    if (formState.isValid) {
-      append(question);
-      unregister(fields);
-      setShowSuccessMessage(true)
-    }
+
+    append(question);
+    unregister(fields);
+    setShowSuccessMessage(true)
   };
 
   if (showSuccessMessage) {
     return (
-      <Alert variant='standard' severity='success'>
+      <Alert variant='standard' severity='success' sx={{ alignItems:"center" }}>
         <Grid container direction='column' spacing={2}>
           <Grid item>
-            <Typography variant='h6'>Question Added Successfully</Typography>
+            <Typography variant='h6'>Question {number}  Added Successfully</Typography>
           </Grid>
         </Grid>
       </Alert>

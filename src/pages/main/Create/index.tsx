@@ -11,15 +11,8 @@ const Create = () => {
     <Form submitHanlder={submitHandler}>
       <Stack spacing={2}>
         <QuizBasicInfo />
-        <Question number={1} />
-        {/* <Question number={2} /> */}
-        {/*
-        <Question number={3} />
-        <Question number={4} /> */}
-
-        <Button variant="contained" type="submit">
-          Submit
-        </Button>
+        {new Array(4).fill(0).map((_, index) => <Question number={index + 1} />)}
+        <Button variant='contained' type='submit'>Submit</Button>
       </Stack>
     </Form>
   );
