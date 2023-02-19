@@ -7,20 +7,21 @@ interface FormProps {
   children: React.ReactNode;
   schema?: any;
   defaultValues?: any;
-  submitHanlder: (data: any) => void;
+  submitHandler: (data: any) => void;
   noReset?: boolean;
 }
 
 function Form(props: FormProps) {
-  const { children, schema, submitHanlder, noReset, defaultValues } = props;
+  const { children, schema, submitHandler, noReset, defaultValues } = props;
 
   const methods = useForm({
     resolver: schema ? yupResolver(schema) : undefined,
     defaultValues: defaultValues ? defaultValues : undefined,
+    mode: "onChange",
   });
 
   const onSubmit = (data: any) => {
-    submitHanlder(data);
+    submitHandler(data);
     !noReset && methods.reset();
   };
 

@@ -25,11 +25,13 @@ const Question = ({ number }: { number: number }) => {
       `Q${number}_answer4`,
       `Q${number}_is_true`,
     ];
-
     for (let i = 0; i < fields.length; i++) {
       if (!getValues(fields[i])) {
-        setError(fields[i], { type: "required", message: "required" });
-        return
+        setError(
+          fields[i],
+          { type: "required", message: "required" },
+        );
+        return;
       }
     }
 
@@ -59,15 +61,21 @@ const Question = ({ number }: { number: number }) => {
 
     append(question);
     unregister(fields);
-    setShowSuccessMessage(true)
+    setShowSuccessMessage(true);
   };
 
   if (showSuccessMessage) {
     return (
-      <Alert variant='standard' severity='success' sx={{ alignItems:"center" }}>
+      <Alert
+        variant='standard'
+        severity='success'
+        sx={{ alignItems: "center" }}
+      >
         <Grid container direction='column' spacing={2}>
           <Grid item>
-            <Typography variant='h6'>Question {number}  Added Successfully</Typography>
+            <Typography variant='h6'>
+              Question {number} Added Successfully
+            </Typography>
           </Grid>
         </Grid>
       </Alert>
