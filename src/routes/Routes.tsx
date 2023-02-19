@@ -1,16 +1,10 @@
-import { lazy } from "react";
 import type { RouteObject } from "react-router-dom";
 // Layout
 import AppLayout from "../layout";
 // Pages
-import Home from "../pages/main/Home";
-const Create = lazy(() => import("../pages/main/Create"));
-const Edit = lazy(() => import("../pages/main/Edit"));
-const Play = lazy(() => import("../pages/main/Play"));
-const Error = lazy(() => import("../pages/common/Error"));
-const NoMatch = lazy(() => import("../pages/common/NotMatch"));
+import { Home, Create, Edit, Play, Error, NoMatch } from "../pages";
 
-export const Routes: RouteObject[] = [
+export const Routes = [
   {
     path: "/",
     element: <AppLayout />,
@@ -23,4 +17,4 @@ export const Routes: RouteObject[] = [
       { path: "*", element: <NoMatch /> },
     ],
   },
-];
+] satisfies RouteObject[]

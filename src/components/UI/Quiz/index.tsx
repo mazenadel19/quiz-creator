@@ -7,13 +7,13 @@ import { Grid } from "@mui/material";
 // React-Router
 import { Link } from "react-router-dom";
 // Type
-import { QuizType } from "../../types/quiz";
+import { QuizType } from "../../../types/quiz";
 
-interface IQuiz {
+interface QuizProps {
   quiz: QuizType.RootObject;
 }
 
-const Quiz = ({ quiz }: IQuiz) => (
+const Quiz = ({ quiz }: QuizProps) => (
   <ListItem
     secondaryAction={
       <Grid container spacing={2}>

@@ -24,7 +24,7 @@ const navItems = [
 ];
 
 
-export default function DrawerAppBar() {
+export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -40,12 +40,13 @@ export default function DrawerAppBar() {
       <List>
         {navItems.map(({ text, pathname }) => (
           <NavLink
+            key={text}
             to={pathname}
             className={({ isActive }) =>
               isActive ? "text-decoration-none active" : "text-decoration-none"
             }
           >
-            <ListItem key={text} disablePadding>
+            <ListItem disablePadding>
               <ListItemButton sx={{ textAlign: "center" }}>
                 <ListItemText primary={text} />
               </ListItemButton>

@@ -2,36 +2,36 @@ import { TextField } from "@mui/material";
 // react-hook-form
 import { Controller, useFormContext } from "react-hook-form";
 
-export interface Iprops {
-  inputLabel?: string;
+interface InputProps {
+  label?: string;
   type?: "text" | "url";
   name: string;
   placeholder?: string;
-  defaultValue?: string;
   disabled?: boolean;
   sx?: { [key: string]: string };
 }
 
-function Input(props: Iprops) {
-  const { inputLabel, type, name, placeholder, defaultValue, disabled, sx } = props;
-  const { control, formState: { errors },} = useFormContext();
+function Input(props: InputProps) {
+  const { label, type, name, placeholder, disabled, sx } = props;
+  const { control,formState: { errors } } = useFormContext();
 
   return (
     <Controller
+      rules={{ required:true }}
       name={name}
       control={control}
-      defaultValue={defaultValue || ""}
-      render={({ field: { ...otherFields } }) => (
+      defaultValue={""}
+      render={({ field }) => (
         <TextField
-          {...otherFields}
+          {...field}
           disabled={disabled}
           type={type || "text"}
-          sx={sx ? { width: "100%", ...sx } : { width: "100%" }}
-          label={inputLabel || ""}
+          sx={sx ? { display: "flex", ...sx } : { display: "flex" }}
+          label={label || ""}
           variant='outlined'
           placeholder={placeholder || ""}
           error={!!errors[name]}
-          helperText={!!errors[name] && (errors[name]?.message as string)}
+          helperText={!!errors[name] && (errors[name]?.type as string)}
         />
       )}
     />

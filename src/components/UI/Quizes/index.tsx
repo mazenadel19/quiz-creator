@@ -1,10 +1,10 @@
 // Store
 import { useContext } from "react";
-import { QuizeContext } from "../../store/QuizContext";
+import { QuizeContext } from "../../../store/QuizContext";
 // MUI
 import { Typography, Grid, List, Box, Stack } from "@mui/material";
 // Component
-import Quiz from "../Quiz";
+import { Quiz } from "../.."
 
 export default function Quizes() {
   const { quizes } = useContext(QuizeContext);
@@ -22,7 +22,6 @@ export default function Quizes() {
     );
   }
 
-  console.log({quizes});
   return (
     <Box sx={{ flexGrow: 1 }}>
       <List>

@@ -3,8 +3,7 @@ import { Grid, Box, Toolbar } from "@mui/material";
 // React-Router
 import { Outlet } from "react-router-dom";
 // Components
-import Header from "../components/Header";
-
+import { Header } from "../components";
 
 const AppLayout = () => (
   <Grid container>
@@ -14,10 +13,10 @@ const AppLayout = () => (
     <Grid item xs={12}>
       <Box component='main' sx={{ p: 3 }}>
         <Toolbar />
-        <Outlet/>
+        <Outlet />
       </Box>
     </Grid>
   </Grid>
 );
 
-export default AppLayout
+export default AppLayout;

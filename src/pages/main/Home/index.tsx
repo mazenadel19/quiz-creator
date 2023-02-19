@@ -1,7 +1,7 @@
-import Quizes from "../../../components/Quizes";
+import { Quizes } from "../../../components";
 
 const Home = () => {
-    return <Quizes />;
-}
+  return <Quizes />;
+};
 
-export default Home
+export default Home;
