@@ -24,10 +24,10 @@ export default function RadioButtons(props: RadioButtonsProps) {
         <FormControl error={!!errors[name]?.type}>
           <FormLabel>{label}</FormLabel>
           <RadioGroup row {...field}>
-            <FormControlLabel value={0} control={<Radio />} label={option1}/>
-            <FormControlLabel value={1} control={<Radio />} label={option2} />
-            <FormControlLabel value={2} control={<Radio />} label={option3} />
-            <FormControlLabel value={3} control={<Radio />} label={option4}/>
+            <FormControlLabel value={1} control={<Radio />} label={option1}/>
+            <FormControlLabel value={2} control={<Radio />} label={option2} />
+            <FormControlLabel value={3} control={<Radio />} label={option3} />
+            <FormControlLabel value={4} control={<Radio />} label={option4}/>
           </RadioGroup>
           {errors[name] && <FormHelperText>{errors[name]?.type as string}</FormHelperText>}
         </FormControl>

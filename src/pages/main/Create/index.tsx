@@ -10,10 +10,10 @@ const Create = () => {
   return (
     <Form submitHanlder={submitHandler}>
       <Stack spacing={2}>
-        {/* <QuizBasicInfo /> */}
+        <QuizBasicInfo />
         <Question number={1} />
-        <Question number={2} />
-        {/* 
+        {/* <Question number={2} /> */}
+        {/*
         <Question number={3} />
         <Question number={4} /> */}
 

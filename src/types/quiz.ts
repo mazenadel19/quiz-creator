@@ -1,12 +1,12 @@
 export declare module QuizType {
    interface Answer {
-    id: number;
+    id?: number;
     is_true: boolean;
     text: string;
   }
 
    interface Question {
-    id: number;
+    id?: number;
     answers: Answer[];
     feedback_false: string;
     feedback_true: string;
@@ -14,12 +14,12 @@ export declare module QuizType {
   }
 
    interface RootObject {
-    created: string;
+    created?: string;
     description: string;
-    id: string;
-    modified: string;
+    id?: string;
+    modified?: string;
     questions: Question[];
-    score?: any;
+    score?: number;
     title: string;
     url: string;
   }
