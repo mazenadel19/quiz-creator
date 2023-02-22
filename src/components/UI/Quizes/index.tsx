@@ -1,13 +1,12 @@
-// Store
-import { useContext } from "react";
-import { QuizeContext } from "../../../store/QuizContext";
+// Hook
+import useQuiz from "../../../hooks/useQuiz";
 // MUI
 import { Typography, Grid, List, Box, Stack } from "@mui/material";
 // Component
 import { Quiz } from "../.."
 
 export default function Quizes() {
-  const { quizes } = useContext(QuizeContext);
+  const { quizes } = useQuiz()
 
   if (quizes.length === 0) {
     return (
@@ -25,9 +24,18 @@ export default function Quizes() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <List>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} >
           {quizes.map((quiz) => (
-            <Grid key={quiz.id} item xs={12} sm={6} md={4} lg={3}>
+            <Grid
+              justifyContent="space-evenly"
+              display={"flex"}
+              key={quiz.id}
+              item
+              xs={12}
+              sm={quizes.length > 1 && 6}
+              md={quizes.length > 2 && 4}
+              lg={quizes.length > 3 && 3}
+            >
               <Quiz quiz={quiz} />
             </Grid>
           ))}

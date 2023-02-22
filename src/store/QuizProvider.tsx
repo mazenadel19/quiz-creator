@@ -1,7 +1,7 @@
 import { ReactNode, useState } from "react";
 import req from "../assets/requirment.json";
 import { QuizType } from "../types/quiz";
-import { QuizeContext } from "./QuizContext";
+import { QuizContext } from "./QuizContext";
 
 interface IQuizeProvider {
   children: ReactNode;
@@ -18,7 +18,7 @@ const QuizeProvider = ({ children }: IQuizeProvider) => {
   function updateQuiz() {}
 
   return (
-    <QuizeContext.Provider
+    <QuizContext.Provider
       value={{
         quizes,
         addQuiz,
@@ -26,7 +26,7 @@ const QuizeProvider = ({ children }: IQuizeProvider) => {
       }}
     >
       {children}
-    </QuizeContext.Provider>
+    </QuizContext.Provider>
   );
 };
 
