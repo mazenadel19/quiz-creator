@@ -1,23 +1,17 @@
 import { ReactNode, useState } from "react";
-import req from "../assets/requirment.json";
 import { QuizType } from "../types/quiz";
 import { QuizContext } from "./QuizContext";
 
 interface IQuizeProvider {
   children: ReactNode;
 }
-
-// const STATIC_DATA = new Array(10)
-//   .fill(req)
-//   .map((item) => ({ ...item, id: crypto.randomUUID() }));
+const localQuizes = localStorage.getItem("quizes")
+const localData = localQuizes ? JSON.parse(localQuizes) : [];
 
 const QuizeProvider = ({ children }: IQuizeProvider) => {
-  const [quizes, setQuizes] = useState<QuizType.RootObjectRequired[]>([]);
-  console.log({quizes});
-
+  const [quizes, setQuizes] = useState<QuizType.RootObjectRequired[]>(localData);
 
   function addQuiz(data: QuizType.RootObject) {
-    console.log(data)
     const CURRENT_DATE = new Date().toLocaleString();
     data.created = CURRENT_DATE;
     data.modified = CURRENT_DATE;
@@ -31,12 +25,14 @@ const QuizeProvider = ({ children }: IQuizeProvider) => {
       return { ...question, answers, id: crypto.randomUUID() };
     });
     setQuizes(
-      (prev: QuizType.RootObjectRequired[]) =>
-        [...prev, data] as QuizType.RootObjectRequired[]
+      (prev: QuizType.RootObjectRequired[]) => {
+        localStorage.setItem("quizes", JSON.stringify([...prev, data]));
+       return [...prev, data] as QuizType.RootObjectRequired[]
+      }
     );
   }
 
-  function updateQuiz(data: QuizType.RootObject) {}
+  function updateQuiz(data: QuizType.RootObjectRequired) {}
 
   return (
     <QuizContext.Provider
