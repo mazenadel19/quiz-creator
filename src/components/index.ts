@@ -7,6 +7,7 @@ import Quiz from "./UI/Quiz";
 import Quizes from "./UI/Quizes";
 import Question from "./UI/Question";
 import QuizBasicInfo from "./UI/QuizBasicInfo";
+import CreateFormQuestionnaire from "./UI/CreateFormQuestionnaire";
 
 export {
   RadioButtons,
@@ -17,4 +18,5 @@ export {
   Quizes,
   Question,
   QuizBasicInfo,
+  CreateFormQuestionnaire
 };

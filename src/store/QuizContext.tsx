@@ -3,11 +3,11 @@ import { QuizType } from "../types/quiz";
 
 interface IQuizContext {
   quizes: QuizType.RootObject[];
-  addQuiz: () => void;
-  updateQuiz: () => void;
+  addQuiz: (data: QuizType.RootObject) => void;
+  updateQuiz: (data: QuizType.RootObject) => void;
 }
 export const QuizContext = createContext<IQuizContext>({
   quizes: [],
-  addQuiz: () => {},
-  updateQuiz: () => {},
+  addQuiz: (data: QuizType.RootObject) => {},
+  updateQuiz: (data: QuizType.RootObject) => {},
 });

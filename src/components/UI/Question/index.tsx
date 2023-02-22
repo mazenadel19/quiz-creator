@@ -12,7 +12,7 @@ const Question = ({ number }: { number: number }) => {
   const { getValues, setError, unregister } = useFormContext();
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
-  const { append } = useFieldArray({ name: "Questions" });
+  const { append } = useFieldArray({ name: "questions" });
 
   const handleAddQuestion = () => {
     const fields = [
