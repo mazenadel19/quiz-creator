@@ -23,11 +23,14 @@ export default function Quizes() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
+      <Typography variant='h2' textAlign={"center"} my={4}>
+        Your Quizes
+      </Typography>
       <List>
-        <Grid container spacing={2} >
+        <Grid container spacing={2}>
           {quizes.map((quiz) => (
             <Grid
-              justifyContent="space-evenly"
+              justifyContent='space-evenly'
               display={"flex"}
               key={quiz.id}
               item
