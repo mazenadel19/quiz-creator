@@ -9,7 +9,7 @@ import { Input, RadioButtons } from "../../";
 import { QuizType } from "../../../types/quiz";
 
 const Question = ({ number }: { number: number }) => {
-  const { getValues, setError, unregister } = useFormContext();
+  const { getValues, setError, unregister, register } = useFormContext();
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const { append } = useFieldArray({ name: "questions" });
@@ -27,10 +27,7 @@ const Question = ({ number }: { number: number }) => {
     ];
     for (let i = 0; i < fields.length; i++) {
       if (!getValues(fields[i])) {
-        setError(
-          fields[i],
-          { type: "required", message: "required" },
-        );
+        setError(fields[i], { type: "required", message: "required" });
         return;
       }
     }
@@ -61,6 +58,7 @@ const Question = ({ number }: { number: number }) => {
 
     append(question);
     unregister(fields);
+    unregister("AddQuestion");
     setShowSuccessMessage(true);
   };
 
@@ -125,6 +123,7 @@ const Question = ({ number }: { number: number }) => {
         </Grid>
         <Grid item display='flex' flexDirection='column' xs={12}>
           <Button
+            {...register("AddQuestion", { required: true })}
             color='secondary'
             variant='contained'
             onClick={handleAddQuestion}
