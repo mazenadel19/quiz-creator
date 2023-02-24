@@ -1,12 +1,8 @@
 // MUI
 import { Alert, Button, Grid, Typography } from "@mui/material";
-import { useState } from "react";
-// RHF
-import { useFormContext, useFieldArray } from "react-hook-form";
 // Components
 import { Input, RadioButtons } from "../../";
-// Type
-import { QuizType } from "../../../types/quiz";
+import useAppendQuestion from "../../../hooks/useAppendQuestion";
 
 interface QuestionProps {
   number: number
@@ -14,59 +10,9 @@ interface QuestionProps {
 }
 
 const Question = ({ number, isEdit }: QuestionProps) => {
-  const { getValues, setError, unregister, register } = useFormContext();
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const { handleAppendQuestion, register, showSuccessMessage } = useAppendQuestion(number)
 
-  const { append } = useFieldArray({ name: "questions" });
 
-  const handleAddQuestion = () => {
-    const fields = [
-      `Q${number}_text`,
-      `Q${number}_feedback_true`,
-      `Q${number}_feedback_false`,
-      `Q${number}_answer1`,
-      `Q${number}_answer2`,
-      `Q${number}_answer3`,
-      `Q${number}_answer4`,
-      `Q${number}_is_true`,
-    ];
-
-    for (let i = 0; i < fields.length; i++) {
-      if (!getValues(fields[i])) {
-        setError(fields[i], { type: "required", message: "required" });
-        return;
-      }
-    }
-
-    const question: QuizType.Question = {
-      text: getValues(`Q${number}_text`),
-      answers: [
-        {
-          text: getValues(`Q${number}_answer1`),
-          is_true: getValues(`Q${number}_is_true`) === "1",
-        },
-        {
-          text: getValues(`Q${number}_answer2`),
-          is_true: getValues(`Q${number}_is_true`) === "2",
-        },
-        {
-          text: getValues(`Q${number}_answer3`),
-          is_true: getValues(`Q${number}_is_true`) === "3",
-        },
-        {
-          text: getValues(`Q${number}_answer4`),
-          is_true: getValues(`Q${number}_is_true`) === "4",
-        },
-      ],
-      feedback_false: getValues(`Q${number}_feedback_false`),
-      feedback_true: getValues(`Q${number}_feedback_false`),
-    };
-
-    append(question);
-    unregister(fields);
-    unregister("AddQuestion");
-    setShowSuccessMessage(true);
-  };
 
   if (showSuccessMessage) {
     return (
@@ -132,7 +78,7 @@ const Question = ({ number, isEdit }: QuestionProps) => {
             {...register("AddQuestion", { required: true })}
             color='secondary'
             variant='contained'
-            onClick={handleAddQuestion}
+            onClick={handleAppendQuestion}
           >
             {isEdit ? 'Edit Question' : 'Add Question'}
           </Button>

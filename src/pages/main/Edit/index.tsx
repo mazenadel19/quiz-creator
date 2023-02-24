@@ -28,6 +28,7 @@ const Edit = () => {
 
     function submitHandler(data: QuizType.RootObject) {
         // addQuiz(data);
+        console.log('edit', data)
         navigate('/')
     }
 
