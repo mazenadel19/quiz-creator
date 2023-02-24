@@ -5,11 +5,11 @@ const useQuizDefaultValues = (quiz: QuizType.RootObjectRequired | undefined) => 
 
     const quizWithQuestionIndex = quiz ? {
         ...quiz,
-        questions: quiz.questions.map(({ answers, text, feedback_false, feedback_true, id }, i) => {
+        questions: quiz.questions.map(({ answers, text, feedback_false, feedback_true }, i) => {
             const default_answers: { [x: string]: any }[] = []
 
-            answers.forEach(({ text, is_true, id }, j) => {
-                default_answers.push({ [`Q${i + 1}_answer${j + 1}`]: text, id })
+            answers.forEach(({ text, is_true }, j) => {
+                default_answers.push({ [`Q${i + 1}_answer${j + 1}`]: text })
                 is_true && default_answers.push({ [`Q${i + 1}_is_true`]: `${j + 1}` })
             });
 
@@ -18,7 +18,6 @@ const useQuizDefaultValues = (quiz: QuizType.RootObjectRequired | undefined) => 
                 [`Q${i + 1}_text`]: text,
                 [`Q${i + 1}_feedback_false`]: feedback_false,
                 [`Q${i + 1}_feedback_true`]: feedback_true,
-                id
             };
         })
     } : {}

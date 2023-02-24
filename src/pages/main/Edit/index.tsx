@@ -13,6 +13,8 @@ const Edit = () => {
     const quiz = quizes.find(q => q.id === id)
     const { quizDefaultValues } = useQuizDefaultValues(quiz)
 
+    console.log({ quizes, quiz, quizDefaultValues })
+    
     if (!quiz) {
         return (
             <Stack spacing={5}>
@@ -30,7 +32,6 @@ const Edit = () => {
         updateQuiz(data)
         navigate('/')
     }
-
 
     return (
         <Form submitHandler={submitHandler} defaultValues={quizDefaultValues}>

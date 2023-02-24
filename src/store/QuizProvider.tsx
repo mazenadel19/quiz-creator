@@ -11,7 +11,7 @@ const localData = localQuizes ? JSON.parse(localQuizes) : [];
 const QuizeProvider = ({ children }: IQuizeProvider) => {
   const [quizes, setQuizes] = useState<QuizType.RootObjectRequired[]>(localData);
 
-  function addIndexToQuestionsAndAnswers(questions: QuizType.Question[]){
+  function addIndexToQuestionsAndAnswers(questions: QuizType.Question[]) {
     return questions.map((question) => {
       const answers = question.answers.map((answer) => ({
         ...answer,
@@ -31,20 +31,25 @@ const QuizeProvider = ({ children }: IQuizeProvider) => {
     setQuizes(
       (prev: QuizType.RootObjectRequired[]) => {
         localStorage.setItem("quizes", JSON.stringify([...prev, data]));
-       return [...prev, data] as QuizType.RootObjectRequired[]
+        return [...prev, data] as QuizType.RootObjectRequired[]
       }
     );
   }
 
   function updateQuiz(data: QuizType.RootObjectRequired) {
+    // quizes.forEach(q => {
+    //   console.log('updateQuiz', { data: data.id, quiz: q.id, equal: data.id === q.id })
+    // })
+
     const CURRENT_DATE = new Date().toLocaleString();
     data.modified = CURRENT_DATE;
     data.questions = addIndexToQuestionsAndAnswers(data.questions)
     data.score = 0;
     const quizIndex = quizes.findIndex(quiz => quiz.id === data.id)
+
     setQuizes(
       (prev: QuizType.RootObjectRequired[]) => {
-         prev[quizIndex] = data
+        prev[quizIndex] = data
         localStorage.setItem("quizes", JSON.stringify([...prev]));
         return [...prev] as QuizType.RootObjectRequired[]
       }
