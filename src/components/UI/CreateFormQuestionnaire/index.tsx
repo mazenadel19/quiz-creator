@@ -3,13 +3,17 @@ import Button from "@mui/material/Button";
 import { useFormContext } from "react-hook-form";
 import { Question, QuizBasicInfo } from "../..";
 
-const CreateFormQuestionnaire = () => {
+interface CreateFormQuestionnaireProps {
+  isEdit?: boolean
+}
+
+const CreateFormQuestionnaire = ({ isEdit }: CreateFormQuestionnaireProps) => {
   const { formState } = useFormContext();
   return (
     <Stack spacing={2}>
       <QuizBasicInfo />
       {new Array(4).fill(0).map((_, index) => (
-        <Question key={index} number={index + 1} />
+        <Question key={index} number={index + 1} isEdit={isEdit} />
       ))}
       <Button variant='contained' type='submit' disabled={!formState.isValid}>
         Submit
@@ -18,4 +22,4 @@ const CreateFormQuestionnaire = () => {
   );
 };
 
-export default  CreateFormQuestionnaire
+export default CreateFormQuestionnaire

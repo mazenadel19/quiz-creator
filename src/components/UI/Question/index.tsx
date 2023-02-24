@@ -8,7 +8,12 @@ import { Input, RadioButtons } from "../../";
 // Type
 import { QuizType } from "../../../types/quiz";
 
-const Question = ({ number }: { number: number }) => {
+interface QuestionProps {
+  number: number
+  isEdit?: boolean
+}
+
+const Question = ({ number, isEdit }: QuestionProps) => {
   const { getValues, setError, unregister, register } = useFormContext();
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
@@ -25,7 +30,7 @@ const Question = ({ number }: { number: number }) => {
       `Q${number}_answer4`,
       `Q${number}_is_true`,
     ];
-    
+
     for (let i = 0; i < fields.length; i++) {
       if (!getValues(fields[i])) {
         setError(fields[i], { type: "required", message: "required" });
@@ -129,7 +134,7 @@ const Question = ({ number }: { number: number }) => {
             variant='contained'
             onClick={handleAddQuestion}
           >
-            Add Question
+            {isEdit ? 'Edit Question' : 'Add Question'}
           </Button>
         </Grid>
       </Grid>

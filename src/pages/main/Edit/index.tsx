@@ -29,16 +29,15 @@ const Edit = () => {
     const quizWithQuestionIndex = {
         ...quiz,
         questions: quiz.questions.map(({ answers, text, feedback_false, feedback_true, id }, i) => {
-            const Answers = answers.map(({ text, is_true, id }, j) => {
+            const default_answers: { [x: string]: any }[] = []
 
-                return {
-                    [`Q${i + 1}_answer${j + 1}`]: text,
-                    [`Q${i + 1}_is_true`]: is_true ? `${j + 1}` : undefined,
-                    id
-                }
+            answers.forEach(({ text, is_true, id }, j) => {
+                default_answers.push({ [`Q${i + 1}_answer${j + 1}`]: text, id })
+                is_true && default_answers.push({ [`Q${i + 1}_is_true`]: `${j + 1}` })
             });
+
             return {
-                answers: Answers,
+                answers: default_answers,
                 [`Q${i + 1}_text`]: text,
                 [`Q${i + 1}_feedback_false`]: feedback_false,
                 [`Q${i + 1}_feedback_true`]: feedback_true,
@@ -47,8 +46,7 @@ const Edit = () => {
         })
     }
 
-
-    function findArrays(key: string, value: string | number | boolean | any[]) {
+    function findArraysAndReturnObjects(key: string, value: string | number | boolean | any[]) {
         if (Array.isArray(value)) {
             for (let index = 0; index < value.length; index++) {
                 const obj = value[index]
@@ -63,7 +61,7 @@ const Edit = () => {
 
     function flatter(obj: { [key: string]: string | number | boolean | any[] }) {
         for (const [key, value] of Object.entries(obj)) {
-            const output = findArrays(key, value)
+            const output = findArraysAndReturnObjects(key, value)
             defaultQuiz = { ...defaultQuiz, ...output }
         }
         return defaultQuiz
@@ -76,15 +74,11 @@ const Edit = () => {
         navigate('/')
     }
 
-    // const defaultVals = {
-    //     Q1_feedback_true: "lol"
-    // }
 
-    console.log({ quizWithQuestionIndex })
 
     return (
         <Form submitHandler={submitHandler} defaultValues={defaultValues}>
-            <CreateFormQuestionnaire />
+            <CreateFormQuestionnaire isEdit />
         </Form>
     );
 }
