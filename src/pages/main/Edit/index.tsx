@@ -12,8 +12,6 @@ const Edit = () => {
     const navigate = useNavigate()
     const quiz = quizes.find(q => q.id === id)
     const { quizDefaultValues } = useQuizDefaultValues(quiz)
-
-    console.log({ quizes, quiz, quizDefaultValues })
     
     if (!quiz) {
         return (

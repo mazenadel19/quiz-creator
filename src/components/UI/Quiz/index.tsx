@@ -1,7 +1,6 @@
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import IconButton from "@mui/material/IconButton";
-import StartIcon from "@mui/icons-material/Start";
 import EditIcon from "@mui/icons-material/Edit";
 import { Grid } from "@mui/material";
 // React-Router
@@ -27,18 +26,6 @@ const Quiz = ({ quiz }: QuizProps) => (
             sx={{ backgroundColor: "#eee" }}
           >
             <EditIcon color='warning' />
-          </IconButton>
-        </Grid>
-        <Grid item>
-          <IconButton
-            edge='end'
-            aria-label='play'
-            component={Link}
-            title='play'
-            to={`play/${quiz.id}`}
-            sx={{ backgroundColor: "#eee" }}
-          >
-            <StartIcon color='primary' />
           </IconButton>
         </Grid>
       </Grid>

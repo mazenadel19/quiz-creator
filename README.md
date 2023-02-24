@@ -11,6 +11,4 @@ npm start
 - material ui
 - react-hook-form
 - react-router-dom
-- react-toastify
 - typescript
-- yup

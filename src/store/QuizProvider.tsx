@@ -37,10 +37,6 @@ const QuizeProvider = ({ children }: IQuizeProvider) => {
   }
 
   function updateQuiz(data: QuizType.RootObjectRequired) {
-    // quizes.forEach(q => {
-    //   console.log('updateQuiz', { data: data.id, quiz: q.id, equal: data.id === q.id })
-    // })
-
     const CURRENT_DATE = new Date().toLocaleString();
     data.modified = CURRENT_DATE;
     data.questions = addIndexToQuestionsAndAnswers(data.questions)
