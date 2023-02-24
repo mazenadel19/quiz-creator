@@ -8,7 +8,7 @@ import { QuizType } from "../../../types/quiz";
 
 const Edit = () => {
     const { id } = useParams()
-    const { quizes } = useQuiz();
+    const { quizes, updateQuiz } = useQuiz();
     const navigate = useNavigate()
     const quiz = quizes.find(q => q.id === id)
     const { quizDefaultValues } = useQuizDefaultValues(quiz)
@@ -26,9 +26,8 @@ const Edit = () => {
         );
     }
 
-    function submitHandler(data: QuizType.RootObject) {
-        // addQuiz(data);
-        console.log('edit', data)
+    function submitHandler(data: QuizType.RootObjectRequired) {
+        updateQuiz(data)
         navigate('/')
     }
 

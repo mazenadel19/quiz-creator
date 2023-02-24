@@ -4,13 +4,10 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 // Type
 import { QuizType } from "../types/quiz";
 
-
-
 const useAppendQuestion = (number: number) => {
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const { getValues, setError, unregister, register } = useFormContext();
     const { append } = useFieldArray({ name: "questions" });
-
 
     const handleAppendQuestion = () => {
         const fields = [
