@@ -49,7 +49,7 @@ const useAppendQuestion = (number: number) => {
                 },
             ],
             feedback_false: getValues(`Q${number}_feedback_false`),
-            feedback_true: getValues(`Q${number}_feedback_false`),
+            feedback_true: getValues(`Q${number}_feedback_true`),
         };
 
         append(question);
