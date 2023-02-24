@@ -25,6 +25,7 @@ const Question = ({ number }: { number: number }) => {
       `Q${number}_answer4`,
       `Q${number}_is_true`,
     ];
+    
     for (let i = 0; i < fields.length; i++) {
       if (!getValues(fields[i])) {
         setError(fields[i], { type: "required", message: "required" });

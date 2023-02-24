@@ -6,6 +6,7 @@ import { QuizType } from "../../../types/quiz";
 const Create = () => {
   const { addQuiz } = useQuiz();
   const navigate = useNavigate()
+  
   function submitHandler(data: QuizType.RootObject) {
     addQuiz(data);
     navigate('/')

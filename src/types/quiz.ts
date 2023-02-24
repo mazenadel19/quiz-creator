@@ -24,5 +24,5 @@ export declare module QuizType {
     url: string;
   }
 
-  interface RootObjectRequired extends Required<RootObject> {}
+  interface RootObjectRequired extends Required<RootObject> { }
 }

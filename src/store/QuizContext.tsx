@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { QuizType } from "../types/quiz";
 
 interface IQuizContext {
-  quizes: QuizType.RootObject[];
+  quizes: QuizType.RootObjectRequired[];
   addQuiz: (data: QuizType.RootObject) => void;
   updateQuiz: (data: QuizType.RootObjectRequired) => void;
 }

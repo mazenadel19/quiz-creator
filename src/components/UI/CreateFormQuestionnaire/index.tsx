@@ -8,7 +8,7 @@ const CreateFormQuestionnaire = () => {
   return (
     <Stack spacing={2}>
       <QuizBasicInfo />
-      {new Array(1).fill(0).map((_, index) => (
+      {new Array(4).fill(0).map((_, index) => (
         <Question key={index} number={index + 1} />
       ))}
       <Button variant='contained' type='submit' disabled={!formState.isValid}>
