@@ -1,6 +1,7 @@
 import { TextField } from "@mui/material";
 // react-hook-form
 import { Controller, useFormContext } from "react-hook-form";
+import { Constants } from "../../../utils";
 
 interface InputProps {
   label?: string;
@@ -13,11 +14,20 @@ interface InputProps {
 
 function Input(props: InputProps) {
   const { label, type, name, placeholder, disabled, sx } = props;
-  const { control,formState: { errors } } = useFormContext();
+  const { control, formState: { errors } } = useFormContext();
 
   return (
     <Controller
-      rules={{ required:true }}
+      rules={{
+        required: {
+          value: true,
+          message: "This field is required!"
+        },
+        pattern: type === 'url' ? {
+          value: Constants.YoutubeRegex,
+          message: 'Please enter a valid youtube url!',
+        } : undefined
+      }}
       name={name}
       control={control}
       defaultValue={""}
@@ -31,7 +41,7 @@ function Input(props: InputProps) {
           variant='outlined'
           placeholder={placeholder || ""}
           error={!!errors[name]}
-          helperText={!!errors[name] && (errors[name]?.type as string)}
+          helperText={!!errors[name] && (errors[name]?.message as string)}
         />
       )}
     />

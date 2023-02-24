@@ -12,8 +12,6 @@ interface QuestionProps {
 const Question = ({ number, isEdit }: QuestionProps) => {
   const { handleAppendQuestion, register, showSuccessMessage } = useAppendQuestion(number)
 
-
-
   if (showSuccessMessage) {
     return (
       <Alert
